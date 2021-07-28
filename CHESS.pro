@@ -4,10 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        Interfaces/igamemanager.cpp \
-        Managers/gamemanager.cpp \
+        Managers/GameManager.cpp \
         main.cpp
 
 HEADERS += \
-    Interfaces/igamemanager.h \
-    Managers/gamemanager.h
+    Interfaces/IAvailableMove.h \
+    Interfaces/IGameManager.h \
+    Managers/GameManager.h
