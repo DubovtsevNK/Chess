@@ -6,5 +6,9 @@ GameManager::GameManager()
 
 }
 
+void GameManager::available_move(){
+
+}
+
 } // namespace managers
 
