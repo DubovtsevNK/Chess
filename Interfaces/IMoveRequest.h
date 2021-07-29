@@ -1,7 +1,7 @@
 #ifndef IMOVEREQUEST_H
 #define IMOVEREQUEST_H
 
-namespace Interface {
+namespace interfaces {
 class IMoveRequest{
 
 public:
@@ -13,7 +13,7 @@ public:
 };
 
 
-}
+} // namespace interfaces
 
 
 

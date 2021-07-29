@@ -1,7 +1,7 @@
 #ifndef IFIGUREMANAGER_H
 #define IFIGUREMANAGER_H
 
-namespace Interface {
+namespace interfaces {
 class IFigureManager{
 
 public:
@@ -10,7 +10,7 @@ public:
     void virtual available_move() = 0;
 
 };
-}
+} // namespace interfaces
 
 
 #endif // IFIGUREMANAGER_H
