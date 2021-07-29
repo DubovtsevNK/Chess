@@ -5,9 +5,13 @@ CONFIG -= qt
 
 SOURCES += \
         Managers/GameManager.cpp \
+        Managers/figuremanager.cpp \
         main.cpp
 
 HEADERS += \
     Interfaces/IAvailableMove.h \
+    Interfaces/IFigureManager.h \
     Interfaces/IGameManager.h \
-    Managers/GameManager.h
+    Interfaces/IMoveRequest.h \
+    Managers/GameManager.h \
+    Managers/figuremanager.h
