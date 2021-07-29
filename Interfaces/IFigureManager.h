@@ -1,7 +1,7 @@
 #ifndef IFIGUREMANAGER_H
 #define IFIGUREMANAGER_H
 
-namespace Interface {
+namespace interfaces {
 class IFigureManager{
 
 public:
