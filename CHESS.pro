@@ -11,9 +11,9 @@ SOURCES += \
 
 HEADERS += \
     GameItems/chessfigure.h \
-    Interfaces/IAvailableMove.h \
     Interfaces/IFigureManager.h \
     Interfaces/IGameManager.h \
+    Interfaces/IGraphicsMove.h \
     Interfaces/IMoveRequest.h \
     Managers/GameManager.h \
     Managers/figuremanager.h
