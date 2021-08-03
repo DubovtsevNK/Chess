@@ -1,4 +1,5 @@
 #include "GameManager.h"
+
 namespace managers {
 
 GameManager::GameManager()
@@ -7,6 +8,10 @@ GameManager::GameManager()
 }
 
 void GameManager::available_move(){
+
+}
+
+void GameManager::select_move(){
 
 }
 
