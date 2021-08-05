@@ -18,6 +18,7 @@ public:
 
     virtual bool select_move(SquareOnBoard chosen_square) override;
 
+
 private:
     enum class PartOfGame : unsigned short{
         WHITE_MOVE = 0,

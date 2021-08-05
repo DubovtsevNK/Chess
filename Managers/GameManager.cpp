@@ -10,5 +10,10 @@ bool GameManager::select_move(interfaces::IGraphicsMove::SquareOnBoard chosen_sq
     return 1;
 }
 
+void GameManager::select_move()
+{
+
+}
+
 } // namespace managers
 

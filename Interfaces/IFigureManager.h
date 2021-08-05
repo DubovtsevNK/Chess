@@ -1,13 +1,14 @@
 #ifndef IFIGUREMANAGER_H
 #define IFIGUREMANAGER_H
-
+#include "GameItems/chessfigure.h"
 namespace interfaces {
 class IFigureManager{
 
 public:
     IFigureManager(){}
     ~IFigureManager(){}
-    void virtual available_move() = 0;
+   virtual  gameitems::ChessFigure *available_move(gameitems::unitchess_board units) = 0;//<! files, ranks временные переменные пока не будет клетки
+
 	int temp;
 
 };
