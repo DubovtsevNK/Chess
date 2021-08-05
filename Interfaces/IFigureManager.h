@@ -8,6 +8,7 @@ public:
     IFigureManager(){}
     ~IFigureManager(){}
     void virtual available_move() = 0;
+	int temp;
 
 };
 } // namespace interfaces
