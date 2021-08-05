@@ -3,12 +3,12 @@
 namespace gameitems {
 class ChessFigure
 {
-private:
+public:
     enum class ColorFigure
     {
         WHITE ,
         BLACK
-    }color;
+    };
 
     enum class TypeFigure
     {
@@ -18,10 +18,14 @@ private:
         ROOK = 5,
         QUEEN = 9,
         KING = 10
-    }type;
+    };
+private:
+    ColorFigure figure_color;
+
+    TypeFigure figure_type;
 public:
     ChessFigure()= delete;
-    ChessFigure(ColorFigure _color,TypeFigure _type) : color(_color), type(_type){}
+    ChessFigure(ColorFigure _color,TypeFigure _type) : figure_color(_color), figure_type(_type){}
     ~ChessFigure(){}
 
 };
