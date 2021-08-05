@@ -21,13 +21,24 @@ public:
         KING = 10
     };
 private:
+
+public:
     ColorFigure figure_color;
 
     TypeFigure figure_type;
-public:
+
     ChessFigure()= delete;
     explicit ChessFigure(ColorFigure _color,TypeFigure _type) : figure_color(_color), figure_type(_type){}
     virtual ~ChessFigure(){}
+
+};
+
+
+struct unitchess_board
+//! Прототип ячейки шахматного поля !!!! Сделать enum потом
+{
+    int  files;
+    int ranks;
 
 };
 } // namespace gameitems

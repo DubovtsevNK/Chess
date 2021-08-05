@@ -16,7 +16,7 @@ public:
 
     virtual void available_move() override;
 
-    virtual void select_move() override;
+    virtual void select_move()  override;
 
 private:
 };
