@@ -1,13 +1,13 @@
 #include "GameManager.h"
 namespace managers {
 
-GameManager::GameManager()
-{
+std::vector<interfaces::IGraphicsMove::SquareOnBoard> GameManager::available_move(interfaces::IGraphicsMove::SquareOnBoard chosen_square){
 
 }
 
-void GameManager::available_move(){
-
+bool GameManager::select_move(interfaces::IGraphicsMove::SquareOnBoard chosen_square)
+{
+    return 1;
 }
 
 } // namespace managers
