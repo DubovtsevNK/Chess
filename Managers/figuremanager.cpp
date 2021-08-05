@@ -1,4 +1,5 @@
 #include "figuremanager.h"
+
 namespace managers {
 Figuremanager::Figuremanager()
 {
@@ -32,6 +33,5 @@ void Figuremanager::movePawn(interfaces::IFigureManager *Board,gameitems::unitch
     Board->available_move(units);  //<! Опрос на 2 клетку вперед
     Board->available_move(units);  //<! Опрос на диагонали
     Board->available_move(units);  //<! Опрос на клетку вперед
-
 }
 } // namespace managers

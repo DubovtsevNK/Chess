@@ -1,5 +1,6 @@
 #ifndef CHESSFIGURE_H
 #define CHESSFIGURE_H
+#include <tuple>
 namespace gameitems {
 //!Класс шахматной фигуры.
 class ChessFigure
@@ -28,7 +29,11 @@ public:
     TypeFigure figure_type;
 
     ChessFigure()= delete;
+
     explicit ChessFigure(ColorFigure _color,TypeFigure _type) : figure_color(_color), figure_type(_type){}
+
+    std::tuple <ColorFigure , TypeFigure> const get_figure ();
+
     virtual ~ChessFigure(){}
 
 };
