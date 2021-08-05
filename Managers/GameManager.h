@@ -19,6 +19,13 @@ public:
     virtual void select_move() override;
 
 private:
+    enum class PartOfGame : unsigned short{
+        WHITE_MOVE = 0,
+        BLACK_MOVE = 1,
+        START_OF_GAME = 2,
+        END_OF_GAME = 3
+    };
+    PartOfGame game_stage; //<Переменная указывающая стадию игры
 };
 } // namespace managers
 
