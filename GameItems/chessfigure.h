@@ -26,8 +26,8 @@ private:
     TypeFigure figure_type;
 public:
     ChessFigure()= delete;
-    ChessFigure(ColorFigure _color,TypeFigure _type) : figure_color(_color), figure_type(_type){}
-    ~ChessFigure(){}
+    explicit ChessFigure(ColorFigure _color,TypeFigure _type) : figure_color(_color), figure_type(_type){}
+    virtual ~ChessFigure(){}
 
 };
 } // namespace gameitems
