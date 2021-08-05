@@ -12,11 +12,11 @@ namespace managers {
 class GameManager : public interfaces::IGraphicsMove
 {
 public:
-    GameManager();
+    GameManager() : game_stage(GameManager::PartOfGame::START_OF_GAME){};
 
-    virtual void available_move() override;
+    virtual std::vector<SquareOnBoard> available_move(SquareOnBoard chosen_square) override;
 
-    virtual void select_move() override;
+    virtual bool select_move(SquareOnBoard chosen_square) override;
 
 private:
     enum class PartOfGame : unsigned short{
