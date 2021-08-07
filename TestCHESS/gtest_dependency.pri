@@ -37,3 +37,23 @@ requires(exists($$GTEST_SRCDIR):exists($$GMOCK_SRCDIR))
     SOURCES += \
         $$GMOCK_SRCDIR/src/gmock-all.cc
 }
+
+#Progect Includes
+GAME_ITEMS_FOLDER = GameItems
+GRAPHICS_FOLDER = Graphics
+INTERFACES_FOLDER = Interfaces
+MANAGERS_FOLDER = Managers
+
+requires(exists($$GAME_ITEMS_FOLDER):exists($$GRAPHICS_FOLDER):exists($$INTERFACES_FOLDER):exists($$MANAGERS_FOLDER))
+
+INCLUDEPATH *= \
+    ../$$GAME_ITEMS_FOLDER \
+    ../$$GRAPHICS_FOLDER \
+    ../$$INTERFACES_FOLDER \
+    ../$$MANAGERS_FOLDER
+
+SOURCES += \
+    ../$$GAME_ITEMS_FOLDER/chessfigure.cpp \
+    ../$$MANAGERS_FOLDER/figuremanager.cpp \
+    ../$$MANAGERS_FOLDER/GameManager.cpp \
+

@@ -7,6 +7,7 @@ CONFIG += thread
 CONFIG -= qt
 
 HEADERS += \
+        chessfigureTEST.h \
         tst_firsttest.h
 
 
