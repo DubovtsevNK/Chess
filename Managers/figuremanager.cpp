@@ -6,12 +6,12 @@ Figuremanager::Figuremanager()
 
 }
 
-void Figuremanager::move_request(interfaces::IFigureManager *Board, gameitems::unitchess_board units)
+std::vector<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(interfaces::IFigureManager *Board, gameitems::unitchess_board units)
 {
     gameitems::ChessFigure* tmpFigure;
     tmpFigure = Board->available_move(units);
     if(tmpFigure == nullptr)
-        return /* ошибка */;
+        //return /* ошибка */;
     switch (tmpFigure->figure_type)
     {
     case gameitems::ChessFigure::TypeFigure::PAWN :
