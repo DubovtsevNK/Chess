@@ -14,7 +14,8 @@ namespace managers {
 class GameManager : public interfaces::IGraphicsMove
 {
 public:
-    GameManager() : game_stage(GameManager::PartOfGame::START_OF_GAME){};
+    GameManager(interfaces::IFigureManager &_fig_manager, interfaces::IMoveRequest &_move_req)
+        : game_stage(GameManager::PartOfGame::START_OF_GAME){};
 
     //!Метод запроса вариантов хода для фигуры.
     //!В качестве входного параметра необходимо передавать клетку на запрос ходов для которой делаем.
@@ -34,6 +35,11 @@ public:
 
 
 private:
+
+    interfaces::IFigureManager * i_figure_manager;
+
+    interfaces::IMoveRequest * i_move_request;
+
     //! Класс перечесление с возможными отрезками игры.
     //! Ход белых, черных, начало игры, конец игры.
     enum class PartOfGame : unsigned short{

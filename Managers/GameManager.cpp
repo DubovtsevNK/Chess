@@ -23,9 +23,7 @@ std::vector<interfaces::IGraphicsMove::SquareOnBoard> GameManager::move_request(
 
 bool GameManager::figure_move(interfaces::IGraphicsMove::SquareOnBoard first_square, interfaces::IGraphicsMove::SquareOnBoard second_square)
 {
-    //todo: через семантику перемещения std:move необходимо передвинуть фигуру.
-    //      перед этим необходимо проверить, наличие вражеской фигуры, необходимо вызвоть метод боя фигуры,
-    //      который занесет побитую фигуру в вектор битых фигур, а вместо неё запишет nullptr.
+
 }
 
 } // namespace managers
