@@ -12,6 +12,7 @@
 
 namespace gameitems {
 //todo: Когда появится интерфейс доступа визуального менеджера, добавить наследование от него
+//!Класс игрового поля.
 class ChessBoard : public interfaces::IFigureManager, public interfaces::IGameManager
 {
 private:
@@ -40,6 +41,19 @@ public:
         //!Цифровая составляющая шахматного поля
         unsigned short number;
     };
+
+    //IFigureManager.h:
+    //!TODO: НИКИТА добавь описание!!!
+    virtual  gameitems::ChessFigure *available_move(gameitems::unitchess_board units) override;
+
+    //IGameManager.h
+    //!Метод выставления фигур на cтартовую позицию.
+    virtual void start_position() override;
+
+    //!Метод перемещения фигуры по доске
+    ///todo: подумать над параметрами, которые будут передаваться в данный метод
+    virtual void move() override;
+
 };
 } // namespace gameitems
 
