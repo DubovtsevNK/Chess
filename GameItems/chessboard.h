@@ -14,8 +14,6 @@ namespace gameitems {
 //todo: Когда появится интерфейс доступа визуального менеджера, добавить наследование от него
 class ChessBoard : public interfaces::IFigureManager, public interfaces::IGameManager
 {
-
-
 private:
     //!Количество клеток на поле
     static constexpr std::size_t NUMB_OF_SQUARE = 64;
@@ -25,8 +23,21 @@ private:
 public:
      ChessBoard();
 
+     //!Структура шахматного поля
     struct SquareOnBoard{
-        unsigned short literal;
+        //!Перечисление буквенной составляющей шахматного поля
+        enum class literal : std::size_t{
+            A = 0,
+            B,
+            C,
+            D,
+            E,
+            F,
+            G,
+            H
+        };
+
+        //!Цифровая составляющая шахматного поля
         unsigned short number;
     };
 };
