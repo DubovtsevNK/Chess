@@ -5,7 +5,8 @@
 namespace interfaces {
 //!Абстрактный класс взаимодействия графической логики с менеджером игры.
 class IGraphicsMove{
-    protected:
+    public:
+    //!Временая структура поля на доске
     struct SquareOnBoard{
         unsigned short literal;
         unsigned short number;
