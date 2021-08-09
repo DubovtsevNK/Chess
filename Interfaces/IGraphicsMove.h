@@ -7,6 +7,7 @@ namespace interfaces {
 class IGraphicsMove{
     public:
     //!Временая структура поля на доске
+    //! ТУДУ ну что за названия почему не горизонталь и вертикаль??
     struct SquareOnBoard{
         unsigned short literal;
         unsigned short number;
