@@ -5,7 +5,7 @@
 //progect include:
 #include "Interfaces/IGraphicsMove.h"
 #include "Interfaces/IMoveRequest.h"
-#include "Interfaces/IFigureManager.h"
+
 
 namespace managers {
 //!Класс диспетчера игры.
@@ -24,7 +24,7 @@ public:
 
     //!Метод выбора хода из представленных ранее
     //!В качестве входного параметра необходимо передавать клетку на которую переместим фигуру.
-    //!Функция возвращает 1 после успешного перемещения фигуры.
+    //!Функция возвращает 1(true) после успешного перемещения фигуры.
     virtual bool select_move(SquareOnBoard chosen_square) override;
 
     //!Метод запроса к менеджеру фигуры, о возможных ходах для выбранной фигуры.

@@ -16,9 +16,9 @@ public:
     Figuremanager();
     ~Figuremanager(){}
 
-    std::vector<interfaces::IGraphicsMove::SquareOnBoard> move_request(interfaces::IFigureManager *Board, gameitems::unitchess_board units) override;
+    std::vector<interfaces::IGraphicsMove::SquareOnBoard> move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units) override;
 private:
-    void movePawn(interfaces::IFigureManager *Board,gameitems::unitchess_board units); //<!  Функция выполняющая хход пешки
+    void movePawn(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units); //<!  Функция выполняющая хход пешки
 
 
 };

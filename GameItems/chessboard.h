@@ -9,6 +9,8 @@
 //Interfaces include
 #include "Interfaces/IFigureManager.h"
 #include "Interfaces/IGameManager.h"
+#include "Interfaces/IGraphicsMove.h"
+
 
 namespace gameitems {
 //todo: Когда появится интерфейс доступа визуального менеджера, добавить наследование от него
@@ -44,7 +46,7 @@ public:
 
     //IFigureManager.h:
     //!TODO: НИКИТА добавь описание!!!
-    virtual  gameitems::ChessFigure *available_move(gameitems::unitchess_board units) override;
+    virtual  gameitems::ChessFigure *available_move(interfaces::IGraphicsMove::SquareOnBoard units) override;
 
     //IGameManager.h
     //!Метод выставления фигур на cтартовую позицию.

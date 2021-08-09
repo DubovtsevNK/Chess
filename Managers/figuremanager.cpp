@@ -6,7 +6,7 @@ Figuremanager::Figuremanager()
 
 }
 
-std::vector<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(interfaces::IFigureManager *Board, gameitems::unitchess_board units)
+std::vector<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units)
 {
     gameitems::ChessFigure* tmpFigure;
     tmpFigure = Board->available_move(units);
@@ -21,7 +21,7 @@ std::vector<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_reques
     }
 }
 
-void Figuremanager::movePawn(interfaces::IFigureManager *Board,gameitems::unitchess_board units) //<! files, ranks временные переменные пока не будет клетки
+void Figuremanager::movePawn(interfaces::IFigureManager *Board,interfaces::IGraphicsMove::SquareOnBoard units ) //<! files, ranks временные переменные пока не будет клетки
 {
     std::vector<gameitems::unitchess_board> vectorVariantMove;
     /* Необходимо сделать методы для работы с клеткой

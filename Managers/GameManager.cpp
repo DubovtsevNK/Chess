@@ -18,7 +18,7 @@ std::vector<interfaces::IGraphicsMove::SquareOnBoard> GameManager::move_request(
 
     chosen_square_on_board = chosen_square;
 
-    return figure_manager.move_request(tmp_board, tmp_unit);
+    return figure_manager.move_request(tmp_board, chosen_square);
 }
 
 bool GameManager::figure_move(interfaces::IGraphicsMove::SquareOnBoard first_square, interfaces::IGraphicsMove::SquareOnBoard second_square)

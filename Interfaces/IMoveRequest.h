@@ -4,6 +4,8 @@
 #include "IGraphicsMove.h"
 
 namespace interfaces {
+//<! Интерфейс отвечающий за движения фигур по полю
+//<! Ему все равно какого цвета фигура он просто проверяет возможные варианты хода
 class IMoveRequest{
 
 public:
@@ -15,7 +17,10 @@ public:
     //      указатель на поле, для вызова этого метода.
     //      В метод интерфейса необходимо передавать только номер клетки, а всю бизнесс логику:
     //      с каким полем общаться и доступные ходы, должен решать уже диспетчер фигуры.
-    virtual std::vector<interfaces::IGraphicsMove::SquareOnBoard> move_request(IFigureManager * board,gameitems::unitchess_board units) = 0;//<! files, ranks временные переменные пока не будет клетки
+    // TODO: Не получится без указателя потому что по нему у меня происходит общение с доской
+    // Для получения значений о ячейки поля.Либо в конструктор наследуемого класса передавать указатель на доску
+    // без ьуказателя никак
+    virtual std::vector<interfaces::IGraphicsMove::SquareOnBoard> move_request(IFigureManager * board,interfaces::IGraphicsMove::SquareOnBoard units) = 0;//<! files, ranks временные переменные пока не будет клетки
 	int temp;
 
 };
