@@ -28,8 +28,7 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(
 std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::movePawn(interfaces::IFigureManager *Board,
                                                                                 interfaces::IGraphicsMove::SquareOnBoard units , gameitems::ChessFigure *figure)
 {
-    std::list<interfaces::IGraphicsMove::SquareOnBoard> listVariantMove;//<! Вектор который будем возврашать
-    interfaces::IGraphicsMove::SquareOnBoard tmpunits = units; //<! Временная переменная что бы менять значение поля, но мне это совсем не нравки нужно что-то придумать
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> listVariantMove;//<! Лист который будем возврашать
     gameitems::ChessFigure  *variantMove; //<! переменная для отслеживания поняля
     int number = 0;                       //<! Переменная что бы понимать насколько двигать пешку вперед, тоесть это ее первый ход или нет
     if(figure->figure_color == gameitems::ChessFigure::ColorFigure::WHITE)  //<! Условие для логики движения в зависимости от цвета фигуры
@@ -42,12 +41,12 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::movePawn(inte
         {
 
          variantMove = Board->available_move(unitsBoard(&units,counter,direction::NORTH));  //<! Опрос на клетку вперед
-         if(variantMove == nullptr) listVariantMove.push_back(tmpunits);
+         if(variantMove == nullptr) listVariantMove.push_back(unitsBoard(&units,counter,direction::NORTH));
         }
         variantMove = Board->available_move(unitsBoard(&units,1,direction::NORTHEAST));  //<! Опрос на клетку по диагонале вправо
-        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(tmpunits); //<! Если клетка не пустая и не союзная фигура то занести в вектор вариант хода
+        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(unitsBoard(&units,1,direction::NORTHEAST)); //<! Если клетка не пустая и не союзная фигура то занести в вектор вариант хода
         variantMove = Board->available_move(unitsBoard(&units,1,direction::NORTHWEST));  //<! Опрос на клетку по диагонале влево
-        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(tmpunits);//<! Если клетка не пустая и не союзная фигура то занести в вектор вариант хода
+        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(unitsBoard(&units,1,direction::NORTHWEST));//<! Если клетка не пустая и не союзная фигура то занести в вектор вариант хода
     }
     else if(figure->figure_color == gameitems::ChessFigure::ColorFigure::BLACK) //<! ТО же самое что и для белой фигуры только в другую сторону
     {
@@ -59,17 +58,23 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::movePawn(inte
         {
 
          variantMove = Board->available_move(unitsBoard(&units,counter,direction::SOUTH));
-         if(variantMove == nullptr) listVariantMove.push_back(tmpunits);
+         if(variantMove == nullptr) listVariantMove.push_back(unitsBoard(&units,counter,direction::SOUTH));
         }
         variantMove = Board->available_move(unitsBoard(&units,1,direction::SOUTHEAST));
-        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(tmpunits);
+        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(unitsBoard(&units,1,direction::SOUTHEAST));
         variantMove = Board->available_move(unitsBoard(&units,1,direction::SOUTHWEST));
-        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(tmpunits);
+        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(unitsBoard(&units,1,direction::SOUTHWEST));
     }
 
 
     return listVariantMove;
 
+
+
+}
+
+std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::moveKnight(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units, gameitems::ChessFigure *figure)
+{
 
 
 }

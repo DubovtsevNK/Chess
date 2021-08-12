@@ -35,6 +35,7 @@ public:
 private:
     // Движение фигур
     std::list<interfaces::IGraphicsMove::SquareOnBoard> movePawn(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure); //<!  Функция выполняющая хход пешки
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> moveKnight(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure);
 
     // Движение в различные стороны
 
