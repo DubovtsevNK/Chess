@@ -28,8 +28,16 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(
         case gameitems::ChessFigure::TypeFigure::QUEEN:
             return moveQueen(Board,units,tmpFigure);
 
+        case gameitems::ChessFigure::TypeFigure::ROOK:
+            return moveRook(Board,units,tmpFigure);
 
+        case gameitems::ChessFigure::TypeFigure::KING:
+            return moveKing(Board,units,tmpFigure);
+
+        default:
+            return  std::list<interfaces::IGraphicsMove::SquareOnBoard>(0);
         }
+    return  std::list<interfaces::IGraphicsMove::SquareOnBoard>(0);
 }
 //!Пешка сложная фигура т.к ходит вперёд а бъёт по диагонали, поэтому ее функционал хода будет единственным
 //!Функция нужена  для обоих цветов фигурт т.к эта фигура двигается только в одном направление.
@@ -86,9 +94,10 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::moveKnight(in
 {
     std::list<interfaces::IGraphicsMove::SquareOnBoard> listVariantMove;//<! Лист который будем возврашать
     gameitems::ChessFigure  *variantMove; //<! переменная для отслеживания понля
-    std::array<direction,4> arDirection {direction::EAST, //<! Массив для прохода по всем направлениям
-                direction::NORTH,
+    std::array<direction,4> arDirection {                    //<! Массив для прохода по всем направлениям
+        direction::NORTH,
                 direction::SOUTH,
+                direction::EAST,
                 direction::WEST};
 
     for(auto itDirectio : arDirection)//<! Проход по всем направлениям
@@ -184,6 +193,41 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::moveKing(inte
         else if(variantMove->figure_color != figure->figure_color/*and тут необходима функция на проверку не под боем ли поле*/)  listVariantMove.push_back(unitsBoard(&units,count++,itDirectio)); //<! Если на клетке находится противник то добвляем этот вариант в лист
     }
     return listVariantMove;
+}
+
+//!Для коня буду все в ручную писать т.к. эта функция будет исользоваться единожды и конь один ходит по странному
+std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::moveRook(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units, gameitems::ChessFigure *figure)
+{
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> listVariantMove;//<! Лист который будем возврашать
+    gameitems::ChessFigure  *variantMove; //<! переменная для отслеживания понля
+
+    interfaces::IGraphicsMove::SquareOnBoard tmpSquare = unitsBoard(&units,2,direction::NORTH); //<! Двигаемся на 2 клетки вперед
+    variantMove = Board->available_move(unitsBoard(&tmpSquare,1,direction::EAST));              //<! Проверям с права на 1
+    if(variantMove == nullptr or variantMove->figure_color != figure->figure_color) listVariantMove.push_back(unitsBoard(&tmpSquare,1,direction::EAST)); //<! Есди свободна или там враг добавляем
+    variantMove = Board->available_move(unitsBoard(&tmpSquare,1,direction::WEST));              //<! Проверям с лева на 1 поле
+    if(variantMove == nullptr or variantMove->figure_color != figure->figure_color) listVariantMove.push_back(unitsBoard(&tmpSquare,1,direction::EAST)); //<! Есди свободна или там враг добавляем
+
+    tmpSquare = unitsBoard(&units,2,direction::SOUTH);                                          //<! По аналогии выше
+    variantMove = Board->available_move(unitsBoard(&tmpSquare,1,direction::EAST));
+    if(variantMove == nullptr or variantMove->figure_color != figure->figure_color) listVariantMove.push_back(unitsBoard(&tmpSquare,1,direction::EAST));
+    variantMove = Board->available_move(unitsBoard(&tmpSquare,1,direction::WEST));
+    if(variantMove == nullptr or variantMove->figure_color != figure->figure_color) listVariantMove.push_back(unitsBoard(&tmpSquare,1,direction::EAST));
+
+    tmpSquare = unitsBoard(&units,2,direction::EAST);
+    variantMove = Board->available_move(unitsBoard(&tmpSquare,1,direction::NORTH));
+    if(variantMove == nullptr or variantMove->figure_color != figure->figure_color) listVariantMove.push_back(unitsBoard(&tmpSquare,1,direction::EAST));
+    variantMove = Board->available_move(unitsBoard(&tmpSquare,1,direction::SOUTH));
+    if(variantMove == nullptr or variantMove->figure_color != figure->figure_color) listVariantMove.push_back(unitsBoard(&tmpSquare,1,direction::EAST));
+
+    tmpSquare = unitsBoard(&units,2,direction::WEST);
+    variantMove = Board->available_move(unitsBoard(&tmpSquare,1,direction::NORTH));
+    if(variantMove == nullptr or variantMove->figure_color != figure->figure_color) listVariantMove.push_back(unitsBoard(&tmpSquare,1,direction::EAST));
+    variantMove = Board->available_move(unitsBoard(&tmpSquare,1,direction::SOUTH));
+    if(variantMove == nullptr or variantMove->figure_color != figure->figure_color) listVariantMove.push_back(unitsBoard(&tmpSquare,1,direction::EAST));
+
+    return listVariantMove ;
+
+
 }
 
 
