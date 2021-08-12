@@ -32,10 +32,12 @@ public:
     ~Figuremanager(){}
 
     std::list<interfaces::IGraphicsMove::SquareOnBoard> move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units) override;
-private:
+protected:
     // Движение фигур
     std::list<interfaces::IGraphicsMove::SquareOnBoard> movePawn(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure); //<!  Функция выполняющая хход пешки
     std::list<interfaces::IGraphicsMove::SquareOnBoard> moveKnight(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure);
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> moveBishop(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure);
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> moveQueen(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure);
 
     // Движение в различные стороны
 

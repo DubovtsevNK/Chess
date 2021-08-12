@@ -22,6 +22,12 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(
         case gameitems::ChessFigure::TypeFigure::KNIGHT:
             return moveKnight(Board,units,tmpFigure);
 
+        case gameitems::ChessFigure::TypeFigure::BISHOP:
+            return moveBishop(Board,units,tmpFigure);
+
+        case gameitems::ChessFigure::TypeFigure::QUEEN:
+            return moveQueen(Board,units,tmpFigure);
+
 
         }
 }
@@ -81,9 +87,9 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::moveKnight(in
     std::list<interfaces::IGraphicsMove::SquareOnBoard> listVariantMove;//<! Лист который будем возврашать
     gameitems::ChessFigure  *variantMove; //<! переменная для отслеживания понля
     std::array<direction,4> arDirection {direction::EAST, //<! Массив для прохода по всем направлениям
-                                        direction::NORTH,
-                                        direction::SOUTH,
-                                        direction::WEST};
+                direction::NORTH,
+                direction::SOUTH,
+                direction::WEST};
 
     for(auto itDirectio : arDirection)//<! Проход по всем направлениям
     {
@@ -100,6 +106,87 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::moveKnight(in
     }
     return listVariantMove;
 }
+
+std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::moveBishop(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units, gameitems::ChessFigure *figure)
+{
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> listVariantMove;//<! Лист который будем возврашать
+    gameitems::ChessFigure  *variantMove; //<! переменная для отслеживания понля
+    std::array<direction,4> arDirection {direction::NORTHEAST, //<! Массив для прохода по всем направлениям
+                direction::NORTHWEST,
+                direction::SOUTHEAST,
+                direction::SOUTHWEST};
+
+    for(auto itDirectio : arDirection)//<! Проход по всем направлениям
+    {
+        uint8_t count = 1;           //<! Счетчик продвижения
+        do
+        {
+
+            variantMove = Board->available_move(unitsBoard(&units,count++,itDirectio)); //<! Получение  что находится на клетки
+            listVariantMove.push_back(unitsBoard(&units,count++,itDirectio));
+
+        }
+        while(variantMove==nullptr);
+        if(variantMove->figure_color != figure->figure_color)  listVariantMove.push_back(unitsBoard(&units,count++,itDirectio)); //<! Если на клетке находится противник то добвляем этот вариант в лист
+    }
+    return listVariantMove;
+}
+
+std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::moveQueen(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units, gameitems::ChessFigure *figure)
+{
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> listVariantMove;//<! Лист который будем возврашать
+    gameitems::ChessFigure  *variantMove; //<! переменная для отслеживания понля
+    std::array<direction,8> arDirection {direction::NORTHEAST, //<! Массив для прохода по всем направлениям
+                direction::NORTHWEST,
+                direction::SOUTHEAST,
+                direction::SOUTHWEST,
+                direction::EAST, //<! Массив для прохода по всем направлениям
+                direction::NORTH,
+                direction::SOUTH,
+                direction::WEST};
+
+    for(auto itDirectio : arDirection)//<! Проход по всем направлениям
+    {
+        uint8_t count = 1;           //<! Счетчик продвижения
+        do
+        {
+
+            variantMove = Board->available_move(unitsBoard(&units,count++,itDirectio)); //<! Получение  что находится на клетки
+            listVariantMove.push_back(unitsBoard(&units,count++,itDirectio));
+
+        }
+        while(variantMove==nullptr);
+        if(variantMove->figure_color != figure->figure_color)  listVariantMove.push_back(unitsBoard(&units,count++,itDirectio)); //<! Если на клетке находится противник то добвляем этот вариант в лист
+    }
+    return listVariantMove;
+}
+
+std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::moveKing(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units, gameitems::ChessFigure *figure)
+{
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> listVariantMove;//<! Лист который будем возврашать
+    gameitems::ChessFigure  *variantMove; //<! переменная для отслеживания понля
+    std::array<direction,8> arDirection {direction::NORTHEAST, //<! Массив для прохода по всем направлениям
+                direction::NORTHWEST,
+                direction::SOUTHEAST,
+                direction::SOUTHWEST,
+                direction::EAST, //<! Массив для прохода по всем направлениям
+                direction::NORTH,
+                direction::SOUTH,
+                direction::WEST};
+
+    for(auto itDirectio : arDirection)//<! Проход по всем направлениям
+    {
+        uint8_t count = 1;           //<! Счетчик продвижения
+
+
+        variantMove = Board->available_move(unitsBoard(&units,count++,itDirectio)); //<! Получение  что находится на клетки
+        if (variantMove==nullptr/*and тут необходима функция на проверку не под боем ли поле*/)     listVariantMove.push_back(unitsBoard(&units,count++,itDirectio));
+        else if(variantMove->figure_color != figure->figure_color/*and тут необходима функция на проверку не под боем ли поле*/)  listVariantMove.push_back(unitsBoard(&units,count++,itDirectio)); //<! Если на клетке находится противник то добвляем этот вариант в лист
+    }
+    return listVariantMove;
+}
+
+
 
 interfaces::IGraphicsMove::SquareOnBoard Figuremanager::unitsBoard(const interfaces::IGraphicsMove::SquareOnBoard  *units, const unsigned int count, direction dir)
 {
