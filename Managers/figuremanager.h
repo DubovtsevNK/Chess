@@ -38,6 +38,7 @@ protected:
     std::list<interfaces::IGraphicsMove::SquareOnBoard> moveKnight(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure);
     std::list<interfaces::IGraphicsMove::SquareOnBoard> moveBishop(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure);
     std::list<interfaces::IGraphicsMove::SquareOnBoard> moveQueen(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure);
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> moveKing(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure);
 
     // Движение в различные стороны
 
