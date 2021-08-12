@@ -1,7 +1,7 @@
 #include "GameManager.h"
 namespace managers {
 
-std::vector<interfaces::IGraphicsMove::SquareOnBoard> GameManager::available_move
+std::list<interfaces::IGraphicsMove::SquareOnBoard> GameManager::available_move
                             (interfaces::IGraphicsMove::SquareOnBoard chosen_square){
 
 }
@@ -11,7 +11,7 @@ bool GameManager::select_move(interfaces::IGraphicsMove::SquareOnBoard chosen_sq
     return figure_move(chosen_square_on_board, chosen_square);
 }
 
-std::vector<interfaces::IGraphicsMove::SquareOnBoard> GameManager::move_request(interfaces::IGraphicsMove::SquareOnBoard chosen_square, interfaces::IMoveRequest &figure_manager)
+std::list<interfaces::IGraphicsMove::SquareOnBoard> GameManager::move_request(interfaces::IGraphicsMove::SquareOnBoard chosen_square, interfaces::IMoveRequest &figure_manager)
 {
     interfaces::IFigureManager *tmp_board = nullptr; //< Временная переменная с якобы указателем на доску.
     gameitems::unitchess_board tmp_unit; //< Временная переменная с якобы указателем на клетку, после того, как добавится поле и структура клетки общепринятая, в метод будем передавать chosen_square.

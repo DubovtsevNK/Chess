@@ -2,6 +2,7 @@
 #define IMOVEREQUEST_H
 #include "IFigureManager.h"
 #include "IGraphicsMove.h"
+#include<list>
 
 namespace interfaces {
 //<! Интерфейс отвечающий за движения фигур по полю
@@ -20,7 +21,7 @@ public:
     // TODO: Не получится без указателя потому что по нему у меня происходит общение с доской
     // Для получения значений о ячейки поля.Либо в конструктор наследуемого класса передавать указатель на доску
     // без ьуказателя никак
-    virtual std::vector<interfaces::IGraphicsMove::SquareOnBoard> move_request(IFigureManager * board,interfaces::IGraphicsMove::SquareOnBoard units) = 0;//<! files, ranks временные переменные пока не будет клетки
+    virtual std::list<interfaces::IGraphicsMove::SquareOnBoard> move_request(IFigureManager * board,interfaces::IGraphicsMove::SquareOnBoard units) = 0;//<! files, ranks временные переменные пока не будет клетки
 	int temp;
 
 };

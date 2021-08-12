@@ -20,7 +20,7 @@ public:
     //!Метод запроса вариантов хода для фигуры.
     //!В качестве входного параметра необходимо передавать клетку на запрос ходов для которой делаем.
     //!В качестве возращаемых параметров необходимо получать вектор с доступными для хода клетками.
-    virtual std::vector<SquareOnBoard> available_move(SquareOnBoard chosen_square) override;
+    virtual std::list<SquareOnBoard> available_move(SquareOnBoard chosen_square) override;
 
     //!Метод выбора хода из представленных ранее
     //!В качестве входного параметра необходимо передавать клетку на которую переместим фигуру.
@@ -31,7 +31,7 @@ public:
     //!В качестве входных параметров необходимо передавать: - клетку на запрос ходов для которой делаем.
     //!                                                     - ссылку на класс, который будет реализовывать логику интерфейса
     //!В качестве возращаемых параметров необходимо получать вектор с доступными для хода клетками.
-    std::vector<SquareOnBoard> move_request(SquareOnBoard chosen_square, interfaces::IMoveRequest& figure_manager);
+    std::list<SquareOnBoard> move_request(SquareOnBoard chosen_square, interfaces::IMoveRequest& figure_manager);
 
 
 private:

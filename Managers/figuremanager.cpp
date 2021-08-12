@@ -6,9 +6,9 @@ Figuremanager::Figuremanager()
 
 }
 
-std::vector<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units)
+std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units)
 {
-    std::vector<interfaces::IGraphicsMove::SquareOnBoard> variantMove;
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> variantMove;
     gameitems::ChessFigure* tmpFigure;
     tmpFigure = Board->available_move(units);
 
@@ -25,10 +25,10 @@ std::vector<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_reques
 //!Пешка сложная фигура т.к ходит вперёд а бъёт по диагонали, поэтому ее функционал хода будет единственным
 //!Функция нужена  для обоих цветов фигурт т.к эта фигура двигается только в одном направление.
 //! Но плодить 2 функции не вижу смысла
-std::vector<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::movePawn(interfaces::IFigureManager *Board,
+std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::movePawn(interfaces::IFigureManager *Board,
                                                                                 interfaces::IGraphicsMove::SquareOnBoard units , gameitems::ChessFigure *figure)
 {
-    std::vector<interfaces::IGraphicsMove::SquareOnBoard> vectorVariantMove;//<! Вектор который будем возврашать
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> listVariantMove;//<! Вектор который будем возврашать
     interfaces::IGraphicsMove::SquareOnBoard tmpunits = units; //<! Временная переменная что бы менять значение поля, но мне это совсем не нравки нужно что-то придумать
     gameitems::ChessFigure  *variantMove; //<! переменная для отслеживания поняля
     int number = 0;                       //<! Переменная что бы понимать насколько двигать пешку вперед, тоесть это ее первый ход или нет
@@ -42,12 +42,12 @@ std::vector<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::movePawn(in
         {
 
          variantMove = Board->available_move(unitsBoard(&units,counter,direction::NORTH));  //<! Опрос на клетку вперед
-         if(variantMove == nullptr) vectorVariantMove.push_back(tmpunits);
+         if(variantMove == nullptr) listVariantMove.push_back(tmpunits);
         }
         variantMove = Board->available_move(unitsBoard(&units,1,direction::NORTHEAST));  //<! Опрос на клетку по диагонале вправо
-        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) vectorVariantMove.push_back(tmpunits); //<! Если клетка не пустая и не союзная фигура то занести в вектор вариант хода
+        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(tmpunits); //<! Если клетка не пустая и не союзная фигура то занести в вектор вариант хода
         variantMove = Board->available_move(unitsBoard(&units,1,direction::NORTHWEST));  //<! Опрос на клетку по диагонале влево
-        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) vectorVariantMove.push_back(tmpunits);//<! Если клетка не пустая и не союзная фигура то занести в вектор вариант хода
+        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(tmpunits);//<! Если клетка не пустая и не союзная фигура то занести в вектор вариант хода
     }
     else if(figure->figure_color == gameitems::ChessFigure::ColorFigure::BLACK) //<! ТО же самое что и для белой фигуры только в другую сторону
     {
@@ -58,17 +58,17 @@ std::vector<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::movePawn(in
         for (int counter = 1; counter<number+1; counter++ )
         {
 
-         variantMove = Board->available_move(unitsBoard(&units,counter,direction::SOUTH));  //<! Опрос на клетку вперед
-         if(variantMove == nullptr) vectorVariantMove.push_back(tmpunits);
+         variantMove = Board->available_move(unitsBoard(&units,counter,direction::SOUTH));
+         if(variantMove == nullptr) listVariantMove.push_back(tmpunits);
         }
-        variantMove = Board->available_move(unitsBoard(&units,1,direction::SOUTHEAST));  //<! Опрос на клетку вперед
-        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) vectorVariantMove.push_back(tmpunits);
-        variantMove = Board->available_move(unitsBoard(&units,1,direction::SOUTHWEST));  //<! Опрос на клетку вперед
-        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) vectorVariantMove.push_back(tmpunits);
+        variantMove = Board->available_move(unitsBoard(&units,1,direction::SOUTHEAST));
+        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(tmpunits);
+        variantMove = Board->available_move(unitsBoard(&units,1,direction::SOUTHWEST));
+        if(variantMove != nullptr and variantMove->figure_color!=figure->figure_color) listVariantMove.push_back(tmpunits);
     }
 
 
-    return vectorVariantMove;
+    return listVariantMove;
 
 
 

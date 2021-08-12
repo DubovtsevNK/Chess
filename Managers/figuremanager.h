@@ -9,6 +9,7 @@
 
 #include <vector>
 
+
 enum class direction
 {
     NORTH, // север
@@ -30,10 +31,10 @@ public:
     Figuremanager();
     ~Figuremanager(){}
 
-    std::vector<interfaces::IGraphicsMove::SquareOnBoard> move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units) override;
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units) override;
 private:
     // Движение фигур
-    std::vector<interfaces::IGraphicsMove::SquareOnBoard> movePawn(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure); //<!  Функция выполняющая хход пешки
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> movePawn(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure); //<!  Функция выполняющая хход пешки
 
     // Движение в различные стороны
 
