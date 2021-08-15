@@ -11,6 +11,17 @@ class IGraphicsMove{
     struct SquareOnBoard{
         unsigned short literal;
         unsigned short number;
+        //Пере грузка операторов сравнения,что бы иметь возможность сравнивать поля
+        friend bool operator == (const SquareOnBoard &S1,const SquareOnBoard &S2)
+        {
+            if((S1.literal == S2.literal) and (S1.number == S2.number)) return true;
+            else return false;
+        };
+        friend bool operator != (const SquareOnBoard &S1,const SquareOnBoard &S2)
+        {
+            if((S1.literal != S2.literal) or (S1.number != S2.number)) return true;
+            else return false;
+        };
     };
 
     //!Метод запроса вариантов хода для фигуры.

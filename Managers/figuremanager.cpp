@@ -1,10 +1,6 @@
 #include "figuremanager.h"
 
 namespace managers {
-Figuremanager::Figuremanager()
-{
-
-}
 
 std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units)
 {
@@ -38,6 +34,26 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(
             return  std::list<interfaces::IGraphicsMove::SquareOnBoard>(0);
         }
     return  std::list<interfaces::IGraphicsMove::SquareOnBoard>(0);
+}
+
+bool Figuremanager::cheak(interfaces::IGraphicsMove::SquareOnBoard &units)
+{
+    std::list<interfaces::IGraphicsMove::SquareOnBoard> *Figurein = nullptr; // В этот лист из менеджера фигуры должен передаться лист с клетками на которых расположены фигуры
+    /* Тут должна быть реализация запроса списка от менеджера игры*/
+    for(auto it : *Figurein)  //<! Проход по всем полям на кторых находятся фигуры
+    {
+      std::list<interfaces::IGraphicsMove::SquareOnBoard> MoveOneFigure = move_request(Board2,it); //<! Получение возможных ходов для фигуры
+      if(!MoveOneFigure.empty())                                                                   //<! Если не пустой
+         for(auto &it2 :MoveOneFigure)                                                             //<! Проходим по всем возможным ходам
+         {
+             if (it2 ==  units) return true;                                                      //<! Сравниваем Возможные поля с полем для которого определяем шах. Если сошлось то true
+         }
+    }
+    return false;                                                                                    //<! Если ничего не сранилось значит false
+
+
+
+
 }
 //!Пешка сложная фигура т.к ходит вперёд а бъёт по диагонали, поэтому ее функционал хода будет единственным
 //!Функция нужена  для обоих цветов фигурт т.к эта фигура двигается только в одном направление.

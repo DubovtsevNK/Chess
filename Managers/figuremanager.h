@@ -28,10 +28,14 @@ namespace managers {
 class Figuremanager : public interfaces::IMoveRequest
 {
 public:
-    Figuremanager();
+    interfaces::IFigureManager *Board2;//<!указатель н адоску с которой работаем
+
+    Figuremanager(interfaces::IFigureManager *_Board) : Board2(_Board){}
     ~Figuremanager(){}
 
     std::list<interfaces::IGraphicsMove::SquareOnBoard> move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units) override;
+    bool cheak(interfaces::IGraphicsMove::SquareOnBoard &units);//<! Функция для Проверки Шаха Королю
+
 protected:
     // Движение фигур
     std::list<interfaces::IGraphicsMove::SquareOnBoard> movePawn(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units,gameitems::ChessFigure* figure); //<!  Функция выполняющая хход пешки
