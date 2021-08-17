@@ -67,7 +67,7 @@ public:
 
     //!Метод перемещения фигуры по доске
     ///todo: подумать над параметрами, которые будут передаваться в данный метод
-    virtual void move() override;
+    virtual bool move() override;
 
 };
 } // namespace gameitems

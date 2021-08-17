@@ -6,6 +6,7 @@
 #include "Interfaces/IGraphicsMove.h"
 #include "Interfaces/IMoveRequest.h"
 #include "Interfaces/IGameManager.h"
+#include "GameItems/chessboard.h"
 
 
 
@@ -58,13 +59,14 @@ private:
     interfaces::IGameManager &i_game_manager;
 
     //!Переменная, которая будет перезаписываться после каждого запроса на возможных ход методом move_request
-    SquareOnBoard chosen_square_on_board;
+    gameitems::ChessBoard::SquareOnBoard chosen_square_on_board;
 
     //!Метод передвижения фигуры
     //!Не имеем права его вызывать из любой части кода, кроме этого класса.
     //!В качестве входных параметров: клетка откуда перемещаемся и клетка куда перемещаемся.
     //!В качестве выходных параметров возращаем флаг успешности передвижения фигуры
-    bool figure_move(SquareOnBoard first_square, SquareOnBoard second_square);
+    bool figure_move(gameitems::ChessBoard::SquareOnBoard first_square,
+                     gameitems::ChessBoard::SquareOnBoard second_square);
 
 
 };

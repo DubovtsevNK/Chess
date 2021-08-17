@@ -6,21 +6,24 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> GameManager::available_moves
     return move_request(chosen_square, i_move_request);
 }
 
-bool GameManager::select_move(interfaces::IGraphicsMove::SquareOnBoard chosen_square)
+bool GameManager::select_move(interfaces::IGraphicsMove::SquareOnBoard _chosen_square)
 {
+    gameitems::ChessBoard::SquareOnBoard chosen_square_on_board, chosen_square;
     return figure_move(chosen_square_on_board, chosen_square);
 }
 
-std::list<interfaces::IGraphicsMove::SquareOnBoard> GameManager::move_request(interfaces::IGraphicsMove::SquareOnBoard chosen_square, interfaces::IMoveRequest &figure_manager)
+std::list<interfaces::IGraphicsMove::SquareOnBoard> GameManager::move_request(interfaces::IGraphicsMove::SquareOnBoard _chosen_square, interfaces::IMoveRequest &figure_manager)
 {
+    //todo: решить проблему с клетками!!!
+    gameitems::ChessBoard::SquareOnBoard chosen_square;
     chosen_square_on_board = chosen_square;
 
-    return figure_manager.move_request(chosen_square);
+    return figure_manager.move_request(_chosen_square);
 }
 
-bool GameManager::figure_move(interfaces::IGraphicsMove::SquareOnBoard first_square, interfaces::IGraphicsMove::SquareOnBoard second_square)
+bool GameManager::figure_move(gameitems::ChessBoard::SquareOnBoard first_square, gameitems::ChessBoard::SquareOnBoard second_square)
 {
-
+    i_game_manager.move();
 }
 
 } // namespace managers
