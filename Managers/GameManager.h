@@ -16,7 +16,7 @@ namespace managers {
 class GameManager : public interfaces::IGraphicsMove
 {
 public:
-    GameManager( interfaces::IMoveRequest *_move_req, interfaces::IGameManager *_game_mang)
+    GameManager( interfaces::IMoveRequest &_move_req, interfaces::IGameManager &_game_mang)
         :   game_stage(GameManager::PartOfGame::START_OF_GAME),
             i_move_request(_move_req),
             i_game_manager(_game_mang){};
@@ -24,7 +24,7 @@ public:
     //!Метод запроса вариантов хода для фигуры.
     //!В качестве входного параметра необходимо передавать клетку на запрос ходов для которой делаем.
     //!В качестве возращаемых параметров необходимо получать вектор с доступными для хода клетками.
-    virtual std::list<SquareOnBoard> available_move(SquareOnBoard chosen_square) override;
+    virtual std::list<SquareOnBoard> available_moves(SquareOnBoard chosen_square) override;
 
     //!Метод выбора хода из представленных ранее
     //!В качестве входного параметра необходимо передавать клетку на которую переместим фигуру.
@@ -52,10 +52,10 @@ private:
     PartOfGame game_stage;
 
     //!Указатель на интерфейс запроса возможных ходов.
-    interfaces::IMoveRequest *i_move_request;
+    interfaces::IMoveRequest &i_move_request;
 
     //!Указатель на интерфейс связи менеджера игры с доской.
-    interfaces::IGameManager *i_game_manager;
+    interfaces::IGameManager &i_game_manager;
 
     //!Переменная, которая будет перезаписываться после каждого запроса на возможных ход методом move_request
     SquareOnBoard chosen_square_on_board;
