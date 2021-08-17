@@ -5,6 +5,8 @@
 //progect include:
 #include "Interfaces/IGraphicsMove.h"
 #include "Interfaces/IMoveRequest.h"
+#include "Interfaces/IGameManager.h"
+
 
 
 namespace managers {
@@ -14,8 +16,10 @@ namespace managers {
 class GameManager : public interfaces::IGraphicsMove
 {
 public:
-    GameManager(interfaces::IFigureManager &_fig_manager, interfaces::IMoveRequest &_move_req)
-        : game_stage(GameManager::PartOfGame::START_OF_GAME){};
+    GameManager( interfaces::IMoveRequest *_move_req, interfaces::IGameManager *_game_mang)
+        :   game_stage(GameManager::PartOfGame::START_OF_GAME),
+            i_move_request(_move_req),
+            i_game_manager(_game_mang){};
 
     //!Метод запроса вариантов хода для фигуры.
     //!В качестве входного параметра необходимо передавать клетку на запрос ходов для которой делаем.
@@ -35,11 +39,6 @@ public:
 
 
 private:
-
-    interfaces::IFigureManager * i_figure_manager;
-
-    interfaces::IMoveRequest * i_move_request;
-
     //! Класс перечесление с возможными отрезками игры.
     //! Ход белых, черных, начало игры, конец игры.
     enum class PartOfGame : unsigned short{
@@ -49,17 +48,25 @@ private:
         END_OF_GAME = 3
     };
 
+    //!Переменная указывающая стадию игры
+    PartOfGame game_stage;
+
+    //!Указатель на интерфейс запроса возможных ходов.
+    interfaces::IMoveRequest *i_move_request;
+
+    //!Указатель на интерфейс связи менеджера игры с доской.
+    interfaces::IGameManager *i_game_manager;
+
     //!Переменная, которая будет перезаписываться после каждого запроса на возможных ход методом move_request
     SquareOnBoard chosen_square_on_board;
 
     //!Метод передвижения фигуры
-    //!Не имеем права его вызывать из любой части кода, ркоме этого класса.
+    //!Не имеем права его вызывать из любой части кода, кроме этого класса.
     //!В качестве входных параметров: клетка откуда перемещаемся и клетка куда перемещаемся.
     //!В качестве выходных параметров возращаем флаг успешности передвижения фигуры
     bool figure_move(SquareOnBoard first_square, SquareOnBoard second_square);
 
-    //!Переменная указывающая стадию игры
-    PartOfGame game_stage;
+
 };
 } // namespace managers
 

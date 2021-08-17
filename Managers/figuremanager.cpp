@@ -2,8 +2,11 @@
 
 namespace managers {
 
-std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(interfaces::IFigureManager *Board, interfaces::IGraphicsMove::SquareOnBoard units)
+std::list<interfaces::IGraphicsMove::SquareOnBoard> Figuremanager::move_request(/*IFigureManager * board,*/ interfaces::IGraphicsMove::SquareOnBoard units)
 {
+    //TODO: УДАЛИ СТРОКУ ВНИЗУ!!! Я МЕНЯЛ ИНТЕРФЕЙС
+    interfaces::IFigureManager * Board;
+
     std::list<interfaces::IGraphicsMove::SquareOnBoard> variantMove;
     gameitems::ChessFigure* tmpFigure;
     tmpFigure = Board->available_move(units);
@@ -42,7 +45,8 @@ bool Figuremanager::cheak(interfaces::IGraphicsMove::SquareOnBoard &units)
     /* Тут должна быть реализация запроса списка от менеджера игры*/
     for(auto it : *Figurein)  //<! Проход по всем полям на кторых находятся фигуры
     {
-      std::list<interfaces::IGraphicsMove::SquareOnBoard> MoveOneFigure = move_request(Board2,it); //<! Получение возможных ходов для фигуры
+        //TODO: добавил комент во входных параметрах!
+      std::list<interfaces::IGraphicsMove::SquareOnBoard> MoveOneFigure = move_request(/*Board2,*/it); //<! Получение возможных ходов для фигуры
       if(!MoveOneFigure.empty())                                                                   //<! Если не пустой
          for(auto &it2 :MoveOneFigure)                                                             //<! Проходим по всем возможным ходам
          {
