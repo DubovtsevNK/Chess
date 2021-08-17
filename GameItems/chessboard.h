@@ -26,6 +26,7 @@ private:
 public:
      ChessBoard();
 
+
      //!Структура шахматного поля
     struct SquareOnBoard{
         //!Перечисление буквенной составляющей шахматного поля
@@ -38,10 +39,22 @@ public:
             F,
             G,
             H
-        };
+        } Literal;
 
         //!Цифровая составляющая шахматного поля
-        unsigned short number;
+        unsigned short Number;
+
+        //Перегрузка операторов сравнения,что бы иметь возможность сравнивать поля
+        friend bool operator == (const SquareOnBoard &S1,const SquareOnBoard &S2)
+        {
+            if((S1.Literal == S2.Literal) and (S1.Number == S2.Number)) return true;
+            else return false;
+        };
+        friend bool operator != (const SquareOnBoard &S1,const SquareOnBoard &S2)
+        {
+            if((S1.Literal != S2.Literal) or (S1.Number != S2.Number)) return true;
+            else return false;
+        };
     };
 
     //IFigureManager.h:
