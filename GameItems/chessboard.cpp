@@ -16,7 +16,7 @@ void ChessBoard::start_position()
 
 }
 
-bool ChessBoard::move()
+bool ChessBoard::move(gameitems::SquareOnBoard first_square, gameitems::SquareOnBoard second_square)
 {
     //todo: через семантику перемещения std:move необходимо передвинуть фигуру.
     //      перед этим необходимо проверить, наличие вражеской фигуры, необходимо вызвоть метод боя фигуры,

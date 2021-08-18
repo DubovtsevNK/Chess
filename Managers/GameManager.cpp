@@ -23,7 +23,7 @@ std::list<interfaces::IGraphicsMove::SquareOnBoard> GameManager::move_request(in
 
 bool GameManager::figure_move(gameitems::SquareOnBoard first_square, gameitems::SquareOnBoard second_square)
 {
-    i_game_manager.move();
+    i_game_manager.move(first_square, second_square);
 }
 
 } // namespace managers

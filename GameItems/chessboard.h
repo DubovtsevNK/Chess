@@ -5,6 +5,7 @@
 
 //GameItems include
 #include "chessfigure.h"
+#include "squareonboard.h"
 
 //Interfaces include
 #include "Interfaces/IFigureManager.h"
@@ -36,7 +37,7 @@ public:
 
     //!Метод перемещения фигуры по доске
     ///todo: подумать над параметрами, которые будут передаваться в данный метод
-    virtual bool move() override;
+    virtual bool move(gameitems::SquareOnBoard first_square, gameitems::SquareOnBoard second_square) override;
 
 };
 } // namespace gameitems
