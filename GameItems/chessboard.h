@@ -36,8 +36,8 @@ public:
     virtual void start_position() override;
 
     //!Метод перемещения фигуры по доске
-    ///todo: подумать над параметрами, которые будут передаваться в данный метод
     virtual bool move(gameitems::SquareOnBoard first_square, gameitems::SquareOnBoard second_square) override;
+
 
 };
 } // namespace gameitems
