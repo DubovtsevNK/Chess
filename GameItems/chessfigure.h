@@ -21,18 +21,18 @@ public:
         QUEEN = 9,
         KING = 10
     };
-private:
 
-public:
-    ColorFigure figure_color;
+    ColorFigure const figure_color;
 
-    TypeFigure figure_type;
+    TypeFigure const figure_type;
+
+    bool is_moved; //<Признак того, что фигура совершала движение в игре.
 
     ChessFigure()= delete;
 
-    explicit ChessFigure(ColorFigure _color,TypeFigure _type) : figure_color(_color), figure_type(_type){}
+    explicit ChessFigure(ColorFigure _color,TypeFigure _type) : figure_color(_color), figure_type(_type), is_moved(false){}
 
-    std::tuple <ColorFigure , TypeFigure> const get_figure ();
+    std::tuple <ColorFigure , TypeFigure, bool> const get_figure ();
 
     virtual ~ChessFigure(){}
 

@@ -13,6 +13,7 @@ SOURCES += \
 HEADERS += \
     GameItems/chessboard.h \
     GameItems/chessfigure.h \
+    GameItems/squareonboard.h \
     Interfaces/IFigureManager.h \
     Interfaces/IGameManager.h \
     Interfaces/IGraphicsMove.h \

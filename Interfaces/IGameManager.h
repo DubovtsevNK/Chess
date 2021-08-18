@@ -1,5 +1,8 @@
 #ifndef IGAMEMANAGER_H
 #define IGAMEMANAGER_H
+#include <list>
+
+#include "GameItems/squareonboard.h"
 
 namespace interfaces {
 
@@ -11,9 +14,11 @@ public:
     //!Метод выставления фигур на cтартовую позицию.
     virtual void start_position() = 0;
 
-    //!Метод перемещения фигуры по доске
-    ///todo: подумать над параметрами, которые будут передаваться в данный метод
-    virtual void move() = 0 ;
+    /*!Метод перемещения фигуры по доске
+     *В качестве входных параметров: клетка откуда перемещаемся и клетка куда перемещаемся.
+     *В качестве выходных параметров возращаем флаг успешности передвижения фигуры
+     */
+    virtual bool move(gameitems::SquareOnBoard first_square, gameitems::SquareOnBoard second_square) = 0 ;
 };
 } // namespace interfaces
 #endif // IGAMEMANAGER_H

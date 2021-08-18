@@ -5,10 +5,13 @@
 
 //GameItems include
 #include "chessfigure.h"
+#include "squareonboard.h"
 
 //Interfaces include
 #include "Interfaces/IFigureManager.h"
 #include "Interfaces/IGameManager.h"
+#include "Interfaces/IGraphicsMove.h"
+
 
 namespace gameitems {
 //todo: Когда появится интерфейс доступа визуального менеджера, добавить наследование от него
@@ -24,35 +27,17 @@ private:
 public:
      ChessBoard();
 
-     //!Структура шахматного поля
-    struct SquareOnBoard{
-        //!Перечисление буквенной составляющей шахматного поля
-        enum class literal : std::size_t{
-            A = 0,
-            B,
-            C,
-            D,
-            E,
-            F,
-            G,
-            H
-        };
-
-        //!Цифровая составляющая шахматного поля
-        unsigned short number;
-    };
-
     //IFigureManager.h:
     //!TODO: НИКИТА добавь описание!!!
-    virtual  gameitems::ChessFigure *available_move(gameitems::unitchess_board units) override;
+    virtual  gameitems::ChessFigure *available_move(interfaces::IGraphicsMove::SquareOnBoard units) override;
 
     //IGameManager.h
     //!Метод выставления фигур на cтартовую позицию.
     virtual void start_position() override;
 
     //!Метод перемещения фигуры по доске
-    ///todo: подумать над параметрами, которые будут передаваться в данный метод
-    virtual void move() override;
+    virtual bool move(gameitems::SquareOnBoard first_square, gameitems::SquareOnBoard second_square) override;
+
 
 };
 } // namespace gameitems
